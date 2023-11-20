@@ -1,0 +1,17 @@
+version: '3.8'
+
+services:
+  app:
+    image: node:18-alpine
+    command: sh -c "yarn install && yarn dev"
+    build:
+      dockerfile: Dockerfile
+    container_name: my-first-docker
+    ports:
+      - 127.0.0.1:3000:3000
+    working_dir: /app
+    volumes:
+      - .:/app
+      - /app/node_modules
+    environment:
+      - "NEXT_WEBPACK_USEPOLLING=1"
